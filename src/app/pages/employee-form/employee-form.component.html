@@ -1,0 +1,80 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header bg-warning">
+            New Employee
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-3">
+                    <label for="">Name</label>
+                    <input type="text"  [(ngModel)]="employeeObj.fullName" class="form-control" placeholder="Name" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label for="">Email</label>
+                    <input type="text" [(ngModel)]="employeeObj.email" class="form-control" placeholder="Email" >
+                </div>
+                <div class="col-3">
+                    <label for="">Phone</label>
+                    <input type="text" [(ngModel)]="employeeObj.phone" class="form-control" placeholder="Number" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label for="">Gender</label><br>
+                    <input type="radio" [(ngModel)]="employeeObj.gender" name="gender" value="Male" >Male
+                    <input type="radio" [(ngModel)]="employeeObj.gender" name="gender" value="Female" >Female
+                </div>
+                <div class="col-3">
+                    <label for="">Date of Joining</label>
+                    <input type="date" [(ngModel)]="employeeObj.dateOfJoining" class="form-control" placeholder="Date of Joining" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label for="">Select Department</label>
+                    <select (change)="getDesignation()" class="form-select" [(ngModel)]="employeeObj.departmentId">
+                        <option  value="">Select Department</option>
+                        <option *ngFor="let dept of deptList$ | async" [value]="dept.departmentId">{{dept.departmentName}}</option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <label for="">Select Designation</label>
+                    <select class="form-select" [(ngModel)]="employeeObj.designationId">
+                        <option value=""></option>
+                        @for (item of designationList; track $index) {
+                            <option [value]="item.designationId">{{item.designationName}}</option>
+                        }
+                    </select>                
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label for="">Select Employee Type</label>
+                    <select class="form-select" [(ngModel)]="employeeObj.employeeType">
+                        <option value="">Select</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Permanent">Permanent</option>
+                    </select>                 
+                </div>
+                <div class="col-3">
+                    <label for="">Salary</label>
+                    <input type="number" [(ngModel)]="employeeObj.salary" class="form-control" placeholder="Salary" >
+                </div>
+            </div>
+            <div class="row pt-3">
+                <div class="col-3 text-center">
+                    <button class="btn btn-secondary">Reset</button>                
+                </div>
+                <div class="col-3 text-center">
+                    @if (employeeObj.employeeId==0) {
+                        <button class="btn btn-success" (click)="onSaveEmployee()">Save Employee</button>
+                    }@else {
+                        <button class="btn btn-success" (click)="onUpdate()">Update Employee</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header bg-warning">
+            Employee List Portal
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Sr No.</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Joining Date</th>
+                    <th>Employee Type</th>
+                    <th>Department</th>
+                    <th>Action</th>
+                </tr>
+                <tbody>
+                    @for (item of employeeList; track $index) {
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{item.fullName}}</td>
+                            <td>{{item.phone}}</td>
+                            <td>{{item.email}}</td>
+                            <td>{{item.dateOfJoining | date:'dd-MMMM-yy'}}</td>
+                            <td>{{item.employeeType}}</td>
+                            <td>{{item.departmentName}}<br>
+                                {{item.designationName}}
+                            </td>
+                            <td>
+                                <button class="btn btn-success" (click)="onEdit(item.employeeId)">Edit</button>
+                                <button class="btn btn-danger" (click)="onDelete(item.employeeId)">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
